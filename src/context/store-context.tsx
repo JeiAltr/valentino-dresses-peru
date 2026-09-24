@@ -1,0 +1,19 @@
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { initialProducts, type Product } from "@/data/products";
+export type CartItem = { id:string; code:string; name:string; price:number; size:string; color:string; quantity:number };
+export type StoreConfig = { whatsapp:string; address:string; hours:string; email:string; returns:string; terms:string; buying:string };
+const defaultConfig: StoreConfig = { whatsapp:"989232023",address:"Jr. San José, San Carlos, Huancayo",hours:"Lunes a sábado, 10:00 a. m. – 8:00 p. m.",email:"valentinodresses@gmail.com",returns:"Aceptamos cambios dentro de los 7 días, con etiqueta y comprobante.",terms:"Los productos están sujetos a disponibilidad en tienda.",buying:"Elige tus prendas, envíanos tu pedido por WhatsApp y recógelo en tienda." };
+type StoreContextValue = { products:Product[]; cart:CartItem[]; config:StoreConfig; adminLoggedIn:boolean; cartOpen:boolean; setCartOpen:(v:boolean)=>void; addToCart:(item:Omit<CartItem,"id">)=>void; updateQuantity:(id:string,q:number)=>void; removeFromCart:(id:string)=>void; saveProduct:(p:Product)=>void; deleteProduct:(code:string)=>void; updateProduct:(code:string,changes:Partial<Product>)=>void; setConfig:(c:StoreConfig)=>void; setAdminLoggedIn:(v:boolean)=>void; resetDemo:()=>void; cartCount:number; subtotal:number };
+const StoreContext=createContext<StoreContextValue|null>(null);
+const read=<T,>(key:string,fallback:T):T=>{ if(typeof window==="undefined") return fallback; try{return JSON.parse(localStorage.getItem(key)??"") as T}catch{return fallback}};
+export function StoreProvider({children}:{children:ReactNode}){
+ const [products,setProducts]=useState<Product[]>(initialProducts); const [cart,setCart]=useState<CartItem[]>([]); const [config,setConfigState]=useState(defaultConfig); const [adminLoggedIn,setAdmin]=useState(false); const [cartOpen,setCartOpen]=useState(false); const [hydrated,setHydrated]=useState(false);
+ useEffect(()=>{setProducts(read("vd-products",initialProducts));setCart(read("vd-cart",[]));setConfigState(read("vd-config",defaultConfig));setAdmin(read("vd-admin",false));setHydrated(true)},[]);
+ useEffect(()=>{if(hydrated)localStorage.setItem("vd-products",JSON.stringify(products))},[products,hydrated]); useEffect(()=>{if(hydrated)localStorage.setItem("vd-cart",JSON.stringify(cart))},[cart,hydrated]); useEffect(()=>{if(hydrated)localStorage.setItem("vd-config",JSON.stringify(config))},[config,hydrated]); useEffect(()=>{if(hydrated)localStorage.setItem("vd-admin",JSON.stringify(adminLoggedIn))},[adminLoggedIn,hydrated]);
+ const value=useMemo<StoreContextValue>(()=>({products,cart,config,adminLoggedIn,cartOpen,setCartOpen,
+  addToCart:item=>{setCart(prev=>{const id=`${item.code}-${item.size}-${item.color}`;const found=prev.find(x=>x.id===id);return found?prev.map(x=>x.id===id?{...x,quantity:x.quantity+item.quantity}:x):[...prev,{...item,id}]});setCartOpen(true)},
+  updateQuantity:(id,q)=>setCart(prev=>q<1?prev.filter(x=>x.id!==id):prev.map(x=>x.id===id?{...x,quantity:q}:x)),removeFromCart:id=>setCart(prev=>prev.filter(x=>x.id!==id)),
+  saveProduct:p=>setProducts(prev=>prev.some(x=>x.code===p.code)?prev.map(x=>x.code===p.code?p:x):[p,...prev]), deleteProduct:code=>setProducts(prev=>prev.filter(x=>x.code!==code)),updateProduct:(code,changes)=>setProducts(prev=>prev.map(x=>x.code===code?{...x,...changes}:x)),setConfig:setConfigState,setAdminLoggedIn:setAdmin,resetDemo:()=>{setProducts(initialProducts);setCart([]);setConfigState(defaultConfig)},cartCount:cart.reduce((s,x)=>s+x.quantity,0),subtotal:cart.reduce((s,x)=>s+x.price*x.quantity,0)}),[products,cart,config,adminLoggedIn,cartOpen]);
+ return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>
+}
+export function useStore(){const ctx=useContext(StoreContext);if(!ctx)throw new Error("StoreProvider requerido");return ctx}

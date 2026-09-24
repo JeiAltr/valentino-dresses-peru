@@ -1,0 +1,501 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 3px);
+  --radius-xl: calc(var(--radius) + 6px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-foreground: var(--whatsapp-foreground);
+  --color-admin: var(--admin);
+  --color-admin-foreground: var(--admin-foreground);
+  --color-admin-accent: var(--admin-accent);
+  --color-admin-accent-foreground: var(--admin-accent-foreground);
+}
+
+:root {
+  --radius: 0.5rem;
+  /* Paleta Valentino Boutique: Marfil cálido, Borgoña profundo y Champagne rosado */
+  --background: oklch(0.985 0.005 70);
+  --foreground: oklch(0.18 0.02 30);
+  --card: oklch(0.995 0.002 70);
+  --card-foreground: oklch(0.18 0.02 30);
+  --popover: oklch(0.995 0.002 70);
+  --popover-foreground: oklch(0.18 0.02 30);
+  --primary: oklch(0.33 0.13 12);  /* Borgoña Profundo */
+  --primary-foreground: oklch(0.98 0.005 70);
+  --secondary: oklch(0.955 0.014 60); /* Nude Rosado */
+  --secondary-foreground: oklch(0.22 0.035 25);
+  --muted: oklch(0.945 0.008 60);
+  --muted-foreground: oklch(0.46 0.018 35);
+  --accent: oklch(0.90 0.04 75); /* Champagne Dorado */
+  --accent-foreground: oklch(0.28 0.08 18);
+  --destructive: oklch(0.55 0.20 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.90 0.012 60);
+  --input: oklch(0.90 0.012 60);
+  --ring: oklch(0.42 0.12 15);
+  --gold: oklch(0.75 0.10 78);
+  --gold-foreground: oklch(0.20 0.03 25);
+  --whatsapp: oklch(0.65 0.18 145);
+  --whatsapp-foreground: oklch(1 0 0);
+  --admin: oklch(0.20 0.025 25);
+  --admin-foreground: oklch(0.96 0.01 65);
+  --admin-accent: oklch(0.32 0.08 20);
+  --admin-accent-foreground: oklch(0.98 0.01 65);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-primary);
+  }
+}
+
+/* ─── Fonts ─── */
+@utility font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+@utility font-serif {
+  font-family: var(--font-serif);
+}
+
+/* ─── Eyebrow & Labels ─── */
+@utility eyebrow {
+  font-size: 0.70rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  letter-spacing: 0.18em;
+}
+
+@utility label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted-foreground);
+}
+
+/* ─── Menu Mobile ─── */
+@utility menu-link {
+  display: block;
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.95rem 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s, padding-left 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  &:hover {
+    color: var(--color-primary);
+    padding-left: 0.5rem;
+  }
+}
+
+/* ─── Section Headings ─── */
+@utility section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 1.25rem;
+  & h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    line-height: 1.05;
+    font-weight: 600;
+    color: var(--color-foreground);
+  }
+}
+
+/* ─── Horizontal Scroll Row ─── */
+@utility scroll-row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 46%;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.75rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+  @media (min-width: 768px) {
+    grid-auto-columns: 24%;
+  }
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-auto-flow: row;
+    overflow: visible;
+  }
+}
+
+/* ─── Category Tiles ─── */
+@utility category-tile {
+  display: flex;
+  aspect-ratio: 3/4;
+  align-items: flex-end;
+  overflow: hidden;
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 15px rgba(88, 28, 43, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  scroll-snap-align: start;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  &:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 16px 30px rgba(88, 28, 43, 0.14);
+  }
+  & span {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    line-height: 1.1;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* ─── Product Art Gradient Placeholder ─── */
+@utility product-art {
+  background: linear-gradient(150deg, var(--tone-a), var(--tone-b));
+  position: relative;
+  overflow: hidden;
+}
+
+@utility tone-0 {
+  --tone-a: oklch(0.93 0.035 15);
+  --tone-b: oklch(0.74 0.09 10);
+}
+@utility tone-1 {
+  --tone-a: oklch(0.94 0.028 65);
+  --tone-b: oklch(0.78 0.055 55);
+}
+@utility tone-2 {
+  --tone-a: oklch(0.89 0.03 240);
+  --tone-b: oklch(0.70 0.065 230);
+}
+@utility tone-3 {
+  --tone-a: oklch(0.92 0.045 350);
+  --tone-b: oklch(0.73 0.10 340);
+}
+@utility tone-4 {
+  --tone-a: oklch(0.90 0.04 115);
+  --tone-b: oklch(0.72 0.065 108);
+}
+@utility tone-5 {
+  --tone-a: oklch(0.87 0.042 40);
+  --tone-b: oklch(0.66 0.075 28);
+}
+
+/* ─── Hero Section ─── */
+@utility hero-band {
+  background: 
+    linear-gradient(108deg, var(--color-background) 0%, color-mix(in oklab, var(--color-background) 88%, transparent) 52%, transparent 78%),
+    radial-gradient(circle at 82% 25%, oklch(0.93 0.04 58) 0%, oklch(0.80 0.09 12) 100%);
+  position: relative;
+  overflow: hidden;
+  &::before {
+    content: "";
+    position: absolute;
+    right: -5%;
+    top: 0;
+    width: 60%;
+    height: 100%;
+    background:
+      radial-gradient(circle at 60% 40%, oklch(0.92 0.06 350 / 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 30% 70%, oklch(0.88 0.05 60 / 0.08) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  &::after {
+    content: "VALENTINO";
+    position: absolute;
+    right: -2%;
+    top: 12%;
+    font-family: var(--font-display);
+    font-size: min(22vw, 18rem);
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    line-height: 0.8;
+    color: color-mix(in oklab, var(--color-primary) 4%, transparent);
+    pointer-events: none;
+    user-select: none;
+    animation: heroTextFloat 8s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes heroTextFloat {
+  0% { transform: translateY(0) rotate(-0.5deg); opacity: 1; }
+  100% { transform: translateY(-8px) rotate(0.5deg); opacity: 0.7; }
+}
+
+/* ─── Color Swatches ─── */
+@utility color-swatch {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--color-border);
+  background: var(--swatch);
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
+  &:hover {
+    transform: scale(1.15);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  }
+}
+
+@utility swatch-0 { --swatch: #1a1715; }
+@utility swatch-1 { --swatch: #581c2b; }
+@utility swatch-2 { --swatch: #d4a373; }
+@utility swatch-3 { --swatch: #e8d8cd; }
+@utility swatch-4 { --swatch: #2d4059; }
+
+/* ─── Map placeholder ─── */
+@utility map-placeholder {
+  background-image: 
+    linear-gradient(var(--color-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-color: var(--color-secondary);
+}
+
+/* ─── Luxury Cards ─── */
+@utility luxury-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px -2px rgba(88, 28, 43, 0.05);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  &:hover {
+    box-shadow: 0 12px 30px -4px rgba(88, 28, 43, 0.12);
+    border-color: color-mix(in oklab, var(--color-primary) 30%, transparent);
+    transform: translateY(-2px);
+  }
+}
+
+/* ─── Gold Badge ─── */
+@utility gold-badge {
+  background: linear-gradient(135deg, #f7ecd5 0%, #ebd2a4 50%, #d8b479 100%);
+  color: #4a3419;
+  border: 1px solid #d4af37;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* ─── WhatsApp CTA ─── */
+@utility whatsapp-btn {
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.28);
+  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  &:hover {
+    box-shadow: 0 10px 28px rgba(37, 211, 102, 0.42);
+    transform: translateY(-3px) scale(1.02);
+  }
+}
+
+/* ─── Cart Add Animation ─── */
+@keyframes cartPop {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.35); }
+  50% { transform: scale(0.92); }
+  70% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+@utility cart-pop-anim {
+  animation: cartPop 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+/* ─── Smooth Fade In ─── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@utility fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* ─── Staggered children ─── */
+@utility stagger-children {
+  & > * {
+    opacity: 0;
+    animation: fadeInUp 0.45s ease-out forwards;
+  }
+  & > *:nth-child(1) { animation-delay: 0ms; }
+  & > *:nth-child(2) { animation-delay: 60ms; }
+  & > *:nth-child(3) { animation-delay: 120ms; }
+  & > *:nth-child(4) { animation-delay: 180ms; }
+  & > *:nth-child(5) { animation-delay: 240ms; }
+  & > *:nth-child(6) { animation-delay: 300ms; }
+  & > *:nth-child(7) { animation-delay: 360ms; }
+  & > *:nth-child(8) { animation-delay: 420ms; }
+}
+
+/* ─── Shimmer loading effect ─── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@utility shimmer {
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    color-mix(in oklab, white 30%, transparent) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.5s linear infinite;
+}
+
+/* ─── Floating label effect ─── */
+@keyframes gentlePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@utility gentle-pulse {
+  animation: gentlePulse 2.5s ease-in-out infinite;
+}
+
+/* ─── Marquee banner ─── */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@utility marquee-scroll {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee 30s linear infinite;
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+/* ─── Glass card ─── */
+@utility glass-card {
+  background: color-mix(in oklab, var(--color-card) 85%, transparent);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid color-mix(in oklab, var(--color-border) 60%, transparent);
+  box-shadow: 0 8px 32px rgba(88, 28, 43, 0.06);
+}
+
+/* ─── Testimonial card ─── */
+@utility testimonial-card {
+  position: relative;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  transition: all 0.35s ease;
+  &::before {
+    content: "\201C";
+    position: absolute;
+    top: -0.25rem;
+    left: 1rem;
+    font-family: var(--font-display);
+    font-size: 4.5rem;
+    line-height: 1;
+    color: color-mix(in oklab, var(--color-primary) 15%, transparent);
+    pointer-events: none;
+  }
+  &:hover {
+    box-shadow: 0 12px 30px -6px rgba(88, 28, 43, 0.1);
+    transform: translateY(-3px);
+  }
+}
+
+/* ─── Promo Banner ─── */
+@utility promo-banner {
+  background: linear-gradient(135deg, var(--color-primary) 0%, oklch(0.28 0.10 350) 50%, var(--color-primary) 100%);
+  background-size: 200% 200%;
+  animation: gradientMove 6s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ─── Ribbon / Sale Tag ─── */
+@utility sale-ribbon {
+  position: absolute;
+  top: 12px;
+  right: -8px;
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  padding: 3px 12px 3px 8px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 2px 0 0 2px;
+  box-shadow: 0 3px 8px rgba(88, 28, 43, 0.25);
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -6px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid oklch(0.22 0.10 12);
+    border-bottom: 6px solid transparent;
+  }
+}
+
+/* ─── Toast styles ─── */
+[data-sonner-toaster] {
+  --normal-bg: var(--color-card) !important;
+  --normal-text: var(--color-foreground) !important;
+  --normal-border: var(--color-border) !important;
+}
