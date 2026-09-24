@@ -19,12 +19,12 @@ export const Route = createFileRoute("/carrito")({
 
 function CartPage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12 lg:px-8">
+    <div className="mx-auto max-w-4xl px-4 py-8 sm:py-12 lg:px-8 w-full max-w-full overflow-hidden">
       {/* Navegación y Encabezado */}
-      <div className="flex items-center justify-between border-b border-border pb-6">
+      <div className="flex items-center justify-between border-b border-border pb-4 sm:pb-6">
         <div>
           <p className="eyebrow">Tu Selección Exclusiva</p>
-          <h1 className="font-display text-4xl lg:text-5xl font-semibold text-foreground mt-1">
+          <h1 className="font-display text-2xl sm:text-4xl lg:text-5xl font-semibold text-foreground mt-1">
             Bolsa de Compras
           </h1>
         </div>
@@ -36,7 +36,7 @@ function CartPage() {
       </div>
 
       {/* Contenido del Carrito */}
-      <div className="mt-8 bg-card rounded-xl border border-border p-6 shadow-sm">
+      <div className="mt-6 sm:mt-8 bg-card rounded-xl border border-border p-4 sm:p-6 shadow-sm">
         <CartContents />
       </div>
 

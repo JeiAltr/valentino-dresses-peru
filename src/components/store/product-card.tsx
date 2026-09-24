@@ -118,23 +118,23 @@ export function ProductCard({ product }: { product: Product }) {
             </div>
           </div>
 
-          <h3 className="font-display text-lg lg:text-xl font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
+          <h3 className="font-display text-base sm:text-lg lg:text-xl font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
             {product.name}
           </h3>
 
           {/* Prices */}
-          <div className="flex items-baseline gap-2 pt-0.5">
+          <div className="flex items-baseline gap-2 pt-0.5 flex-wrap">
             {product.salePrice ? (
               <>
-                <span className="font-bold text-primary font-display text-lg">
+                <span className="font-bold text-primary font-display text-base sm:text-lg whitespace-nowrap">
                   {formatPrice(product.salePrice)}
                 </span>
-                <span className="text-xs text-muted-foreground line-through">
+                <span className="text-xs text-muted-foreground line-through whitespace-nowrap">
                   {formatPrice(product.price)}
                 </span>
               </>
             ) : (
-              <span className="font-semibold text-foreground font-display text-lg">
+              <span className="font-semibold text-foreground font-display text-base sm:text-lg whitespace-nowrap">
                 {formatPrice(product.price)}
               </span>
             )}
@@ -147,7 +147,7 @@ export function ProductCard({ product }: { product: Product }) {
 
 export function ProductGrid({ products }: { products: Product[] }) {
   return products.length ? (
-    <div className="grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 stagger-children">
+    <div className="grid grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-4 stagger-children">
       {products.map((p) => (
         <ProductCard key={p.code} product={p} />
       ))}

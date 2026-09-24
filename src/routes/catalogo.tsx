@@ -86,13 +86,13 @@ export function CatalogPage({ category, routeQuery = "" }: { category?: string; 
   const currentCategoryName = category ? categories.find((c) => c.slug === category)?.name : "Catálogo Completo";
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 py-6 sm:py-10 lg:px-8 w-full max-w-full overflow-hidden">
       {/* Encabezado */}
-      <div className="mb-8 border-b border-border pb-6">
+      <div className="mb-6 sm:mb-8 border-b border-border pb-4 sm:pb-6">
         <p className="eyebrow">Colección Exclusiva Huancayo</p>
-        <div className="mt-1 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div className="mt-1 flex flex-col md:flex-row md:items-end justify-between gap-3 sm:gap-4">
           <div>
-            <h1 className="font-display text-4xl lg:text-5xl font-semibold text-foreground">
+            <h1 className="font-display text-2xl sm:text-4xl lg:text-5xl font-semibold text-foreground">
               {currentCategoryName}
             </h1>
             <p className="mt-1.5 text-xs text-muted-foreground">
@@ -115,7 +115,7 @@ export function CatalogPage({ category, routeQuery = "" }: { category?: string; 
       </div>
 
       {/* Barra de Búsqueda y Ordenamiento */}
-      <div className="mb-8 grid gap-3 sm:grid-cols-[minmax(0,1fr)_220px]">
+      <div className="mb-6 sm:mb-8 grid gap-3 sm:grid-cols-[minmax(0,1fr)_220px]">
         <div className="relative">
           <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
@@ -148,11 +148,11 @@ export function CatalogPage({ category, routeQuery = "" }: { category?: string; 
               Filtrar Catálogo {hasActiveFilters && "(Activos)"}
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-[85%] max-w-xs p-6 overflow-y-auto">
+          <SheetContent side="left" className="w-[85%] max-w-xs p-4 sm:p-6 overflow-y-auto">
             <SheetHeader className="text-left border-b border-border pb-3">
               <SheetTitle className="font-display text-2xl font-bold">Filtros</SheetTitle>
             </SheetHeader>
-            <div className="mt-6">{filters}</div>
+            <div className="mt-4 sm:mt-6">{filters}</div>
           </SheetContent>
         </Sheet>
       </div>

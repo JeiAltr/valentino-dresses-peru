@@ -422,7 +422,7 @@ export function CartContents({ compact = false }: { compact?: boolean }) {
         <Button
           asChild
           size="lg"
-          className="w-full whatsapp-btn text-white py-6 text-sm flex items-center justify-center gap-2 font-semibold shadow-lg"
+          className="w-full whatsapp-btn text-white py-5 sm:py-6 text-xs sm:text-sm flex items-center justify-center gap-2 font-semibold shadow-lg"
         >
           <a href={whatsappUrl} target="_blank" rel="noreferrer">
             <MessageCircle className="h-4 w-4" />
@@ -447,9 +447,9 @@ export function CartDrawer() {
 
   return (
     <Sheet open={cartOpen} onOpenChange={setCartOpen}>
-      <SheetContent className="flex w-full flex-col sm:max-w-md p-6">
+      <SheetContent className="flex w-full flex-col sm:max-w-md p-4 sm:p-6">
         <SheetHeader className="text-left border-b border-border pb-3">
-          <SheetTitle className="font-display text-3xl font-semibold text-foreground flex items-center justify-between">
+          <SheetTitle className="font-display text-2xl sm:text-3xl font-semibold text-foreground flex items-center justify-between">
             <span>Tu Selección</span>
             <span className="text-xs font-sans font-medium px-2.5 py-0.5 rounded-full bg-secondary text-primary">
               {totalItems} {totalItems === 1 ? "prenda" : "prendas"}

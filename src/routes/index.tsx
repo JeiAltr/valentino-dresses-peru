@@ -122,30 +122,30 @@ function Home() {
   return (
     <>
       {/* ═══ Hero Section ═══ */}
-      <section className="hero-band border-b border-border/80">
-        <div className="mx-auto flex min-h-[78vh] max-w-7xl items-center px-5 py-20 lg:px-8">
-          <div className="max-w-2xl py-6 fade-in-up">
-            <div className="inline-flex items-center gap-2 rounded-full bg-secondary/90 border border-border px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-primary mb-6 shadow-sm">
+      <section className="hero-band border-b border-border/80 w-full max-w-full overflow-hidden">
+        <div className="mx-auto flex min-h-[75vh] max-w-7xl items-center px-4 py-12 sm:px-6 sm:py-20 lg:px-8">
+          <div className="max-w-2xl py-4 sm:py-6 fade-in-up w-full">
+            <div className="inline-flex items-center gap-2 rounded-full bg-secondary/90 border border-border px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-primary mb-5 shadow-sm">
               <Sparkles className="h-3.5 w-3.5" />
               <span>Nueva Colección · Primavera / Verano</span>
             </div>
 
-            <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight text-foreground leading-[0.95]">
+            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-foreground leading-[1.05] sm:leading-[0.95] break-words">
               Prendas que celebran tu{" "}
               <span className="text-primary">estilo</span> y distinción
             </h1>
 
-            <p className="mt-6 text-base md:text-lg leading-relaxed text-muted-foreground font-light max-w-xl">
+            <p className="mt-5 text-sm sm:text-base md:text-lg leading-relaxed text-muted-foreground font-light max-w-xl">
               Moda femenina americana elegida cuidadosamente para ocasiones
               memorables y looks cotidianos. Reserva en línea y pruébatela en
               nuestro showroom.
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full">
               <Button
                 asChild
                 size="lg"
-                className="font-semibold text-sm px-7 py-6 shadow-lg"
+                className="font-semibold text-sm px-7 py-6 shadow-lg w-full sm:w-auto justify-center"
               >
                 <Link to="/catalogo" search={{ q: "" }}>
                   Explorar Colección{" "}
@@ -157,7 +157,7 @@ function Home() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="font-semibold text-sm px-6 py-6 bg-background/80 backdrop-blur"
+                className="font-semibold text-sm px-6 py-6 bg-background/80 backdrop-blur w-full sm:w-auto justify-center"
               >
                 <Link to="/contacto">
                   <MapPin className="mr-2 h-4 w-4 text-primary" /> Visitar
@@ -167,17 +167,17 @@ function Home() {
             </div>
 
             {/* Trust Badges */}
-            <div className="mt-10 pt-6 border-t border-border/60 flex flex-wrap gap-6 text-xs text-muted-foreground">
+            <div className="mt-8 pt-5 border-t border-border/60 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-muted-foreground">
               <div className="flex items-center gap-2">
-                <Check className="h-4 w-4 text-primary font-bold" />
+                <Check className="h-4 w-4 text-primary font-bold shrink-0" />
                 <span>Pruébatelo antes de pagar</span>
               </div>
               <div className="flex items-center gap-2">
-                <Check className="h-4 w-4 text-primary font-bold" />
+                <Check className="h-4 w-4 text-primary font-bold shrink-0" />
                 <span>Tallas desde S hasta XL</span>
               </div>
               <div className="flex items-center gap-2">
-                <Check className="h-4 w-4 text-primary font-bold" />
+                <Check className="h-4 w-4 text-primary font-bold shrink-0" />
                 <span>Yape, Plin o Tarjeta</span>
               </div>
             </div>
@@ -186,8 +186,8 @@ function Home() {
       </section>
 
       {/* ═══ Marquee Promo Banner ═══ */}
-      <div className="promo-banner py-2.5 overflow-hidden">
-        <div className="marquee-scroll text-primary-foreground text-[11px] font-semibold uppercase tracking-widest gap-12">
+      <div className="promo-banner py-2.5 overflow-hidden w-full max-w-full">
+        <div className="marquee-scroll text-primary-foreground text-[11px] font-semibold uppercase tracking-widest gap-12 w-max">
           {[...Array(2)].map((_, i) => (
             <div key={i} className="flex items-center gap-12 shrink-0 pr-12">
               <span className="flex items-center gap-2">
@@ -233,13 +233,13 @@ function Home() {
       </section>
 
       {/* ═══ Categorías ═══ */}
-      <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-14 sm:py-20 lg:px-8 w-full max-w-full overflow-hidden">
         <div className="section-heading">
           <div>
             <p className="eyebrow">Encuentra Tu Prenda Ideal</p>
             <h2>Líneas de la Colección</h2>
           </div>
-          <Button asChild variant="outline" size="sm">
+          <Button asChild variant="outline" size="sm" className="w-full sm:w-auto text-center justify-center">
             <Link to="/catalogo" search={{ q: "" }}>
               Ver Catálogo Completo{" "}
               <ArrowRight className="ml-2 h-4 w-4" />
@@ -247,7 +247,7 @@ function Home() {
           </Button>
         </div>
 
-        <div className="scroll-row mt-10">
+        <div className="scroll-row mt-8 min-w-0 max-w-full">
           {categories.map((c, i) => (
             <Link
               key={c.slug}
@@ -265,7 +265,7 @@ function Home() {
       </section>
 
       {/* ═══ Nuevos Ingresos ═══ */}
-      <section className="mx-auto max-w-7xl px-4 py-16 lg:px-8 border-t border-border">
+      <section className="mx-auto max-w-7xl px-4 py-14 sm:py-16 lg:px-8 border-t border-border w-full max-w-full overflow-hidden">
         <div className="section-heading">
           <div>
             <p className="eyebrow">Recién Llegadas al Showroom</p>
@@ -274,22 +274,22 @@ function Home() {
           <Button
             asChild
             variant="link"
-            className="text-primary font-semibold text-xs"
+            className="text-primary font-semibold text-xs p-0 h-auto sm:h-9"
           >
             <Link to="/catalogo" search={{ q: "" }}>
-              Ver todas las novedades ({visible.length} prendas)
+              Ver todas las novedades ({visible.length} prendas) →
             </Link>
           </Button>
         </div>
 
-        <div className="mt-10">
+        <div className="mt-8">
           <ProductGrid products={newArrivals} />
         </div>
       </section>
 
       {/* ═══ Ofertas ═══ */}
       {saleProducts.length > 0 && (
-        <section className="bg-secondary/60 border-y border-border py-20">
+        <section className="bg-secondary/60 border-y border-border py-14 sm:py-20 w-full max-w-full overflow-hidden">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <div className="section-heading">
               <div>
@@ -300,7 +300,7 @@ function Home() {
                 asChild
                 variant="outline"
                 size="sm"
-                className="border-primary text-primary font-semibold"
+                className="border-primary text-primary font-semibold w-full sm:w-auto text-center justify-center"
               >
                 <Link to="/catalogo" search={{ q: "ofertas" }}>
                   Ver Todas las Ofertas
@@ -308,7 +308,7 @@ function Home() {
               </Button>
             </div>
 
-            <div className="mt-10">
+            <div className="mt-8">
               <ProductGrid products={saleProducts} />
             </div>
           </div>
@@ -316,10 +316,10 @@ function Home() {
       )}
 
       {/* ═══ Testimonios ═══ */}
-      <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
-        <div className="text-center max-w-xl mx-auto mb-12">
+      <section className="mx-auto max-w-7xl px-4 py-14 sm:py-20 lg:px-8 w-full max-w-full overflow-hidden">
+        <div className="text-center max-w-xl mx-auto mb-10">
           <p className="eyebrow">Lo Que Dicen Nuestras Clientas</p>
-          <h2 className="font-display text-4xl lg:text-5xl font-semibold text-foreground mt-2">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground mt-2">
             Experiencias Reales
           </h2>
           <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
@@ -328,7 +328,7 @@ function Home() {
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3 stagger-children">
+        <div className="grid gap-5 sm:gap-6 md:grid-cols-3 stagger-children">
           {testimonials.map((t, idx) => (
             <div key={idx} className="testimonial-card">
               <div className="flex items-center gap-1 mb-3 pt-6">
@@ -343,7 +343,7 @@ function Home() {
                 "{t.text}"
               </p>
               <div className="mt-4 flex items-center gap-3 pt-3 border-t border-border/60">
-                <div className="h-8 w-8 rounded-full bg-secondary flex items-center justify-center text-xs font-bold text-primary">
+                <div className="h-8 w-8 rounded-full bg-secondary flex items-center justify-center text-xs font-bold text-primary shrink-0">
                   {t.name.charAt(0)}
                 </div>
                 <div>
@@ -361,11 +361,11 @@ function Home() {
       </section>
 
       {/* ═══ Cómo Comprar ═══ */}
-      <section className="bg-secondary/30 border-t border-border">
-        <div className="mx-auto max-w-7xl px-4 py-24 lg:px-8">
+      <section className="bg-secondary/30 border-t border-border w-full max-w-full overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:py-24 lg:px-8">
           <div className="text-center max-w-xl mx-auto">
             <p className="eyebrow">Experiencia Cómoda y Segura</p>
-            <h2 className="font-display text-4xl lg:text-5xl font-semibold text-foreground mt-2">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground mt-2">
               ¿Cómo comprar?
             </h2>
             <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
@@ -374,19 +374,19 @@ function Home() {
             </p>
           </div>
 
-          <div className="mt-16 grid gap-8 md:grid-cols-3 stagger-children">
+          <div className="mt-10 sm:mt-16 grid gap-6 sm:gap-8 md:grid-cols-3 stagger-children">
             {steps.map(({ Icon, n, title, description }) => (
               <div
                 key={n}
-                className="relative text-center luxury-card p-8"
+                className="relative text-center luxury-card p-6 sm:p-8"
               >
-                <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-secondary text-primary border border-border/80">
-                  <Icon className="h-7 w-7" />
+                <div className="mx-auto grid h-14 w-14 sm:h-16 sm:w-16 place-items-center rounded-full bg-secondary text-primary border border-border/80">
+                  <Icon className="h-6 w-6 sm:h-7 sm:w-7" />
                 </div>
-                <span className="mt-6 inline-block text-[11px] font-bold uppercase tracking-widest text-primary font-mono">
+                <span className="mt-5 sm:mt-6 inline-block text-[11px] font-bold uppercase tracking-widest text-primary font-mono">
                   PASO {n}
                 </span>
-                <h3 className="mt-2 font-display text-2xl font-bold text-foreground">
+                <h3 className="mt-2 font-display text-xl sm:text-2xl font-bold text-foreground">
                   {title}
                 </h3>
                 <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
@@ -397,13 +397,13 @@ function Home() {
           </div>
 
           {/* Banner Showroom */}
-          <div className="mt-16 rounded-2xl promo-banner p-8 md:p-12 text-primary-foreground shadow-xl">
-            <div className="grid gap-6 md:grid-cols-[1.5fr_auto] items-center">
+          <div className="mt-12 sm:mt-16 rounded-2xl promo-banner p-6 sm:p-8 md:p-12 text-primary-foreground shadow-xl">
+            <div className="grid gap-5 sm:gap-6 md:grid-cols-[1.5fr_auto] items-center">
               <div>
                 <span className="text-xs uppercase tracking-widest font-mono text-accent">
                   📍 Tu Showroom en San Carlos
                 </span>
-                <h3 className="font-display text-3xl md:text-4xl font-bold mt-2">
+                <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold mt-2">
                   Ven a visitarnos en Huancayo
                 </h3>
                 <p className="mt-2 text-sm text-primary-foreground/90 max-w-xl leading-relaxed">
@@ -420,7 +420,7 @@ function Home() {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-white text-primary hover:bg-white/90 font-semibold text-xs"
+                  className="bg-white text-primary hover:bg-white/90 font-semibold text-xs w-full sm:w-auto justify-center"
                 >
                   <a
                     href={`https://wa.me/51${config.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent("¡Hola Erika! Deseo coordinar una visita al showroom de San Carlos.")}`}

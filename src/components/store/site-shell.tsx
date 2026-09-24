@@ -36,11 +36,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
   if (isAdmin) return <>{children}</>;
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground">
+    <div className="min-h-screen flex flex-col bg-background text-foreground overflow-x-hidden w-full max-w-full">
       {/* Top Banner */}
-      <div className="bg-primary text-primary-foreground px-4 py-2 text-center text-[11px] font-semibold tracking-wider uppercase flex items-center justify-center gap-2">
+      <div className="bg-primary text-primary-foreground px-3 py-2 text-center text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase flex items-center justify-center gap-1.5 flex-wrap leading-tight w-full max-w-full">
         <Sparkles className="h-3 w-3 text-accent shrink-0" />
-        <span>
+        <span className="text-center">
           Showroom San Carlos, Huancayo · Reserva online y pruébate antes de
           pagar
         </span>
@@ -196,12 +196,12 @@ function Header() {
         {/* Logo */}
         <Link
           to="/"
-          className="min-w-0 text-center flex flex-col items-center group"
+          className="min-w-0 text-center flex flex-col items-center group px-1"
         >
-          <span className="font-display text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors duration-300">
+          <span className="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors duration-300 leading-tight">
             Valentino Dresses
           </span>
-          <span className="text-[9px] font-sans font-semibold uppercase tracking-[0.25em] text-muted-foreground mt-0.5">
+          <span className="text-[8px] sm:text-[9px] font-sans font-semibold uppercase tracking-[0.2em] sm:tracking-[0.25em] text-muted-foreground mt-0.5">
             Boutique & Atelier · Huancayo
           </span>
         </Link>
@@ -280,8 +280,8 @@ function Footer() {
   const { config } = useStore();
 
   return (
-    <footer className="mt-28 bg-secondary/80 border-t border-border">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 md:grid-cols-4 lg:px-8">
+    <footer className="mt-14 sm:mt-28 bg-secondary/80 border-t border-border w-full max-w-full overflow-hidden">
+      <div className="mx-auto grid max-w-7xl gap-8 sm:gap-10 px-4 py-10 sm:py-16 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:px-8">
         {/* Brand */}
         <div className="space-y-3">
           <p className="font-display text-3xl font-bold tracking-tight text-foreground">
@@ -471,7 +471,7 @@ function FloatingWhatsApp() {
   }, []);
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex items-center gap-3">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center gap-3">
       {showTooltip && (
         <div className="hidden md:flex glass-card rounded-full py-2 px-3.5 text-xs text-foreground items-center gap-2 fade-in-up">
           <Sparkles className="h-3.5 w-3.5 text-primary" />
@@ -488,10 +488,10 @@ function FloatingWhatsApp() {
         href={`https://wa.me/51${config.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent("¡Hola Erika! Vi la tienda online de Valentino Dresses y deseo hacer una consulta.")}`}
         target="_blank"
         rel="noreferrer"
-        className="whatsapp-btn grid h-14 w-14 place-items-center rounded-full shadow-2xl"
+        className="whatsapp-btn grid h-12 w-12 sm:h-14 sm:w-14 place-items-center rounded-full shadow-2xl transition-transform hover:scale-105 active:scale-95"
         aria-label="Escribir por WhatsApp"
       >
-        <span className="text-2xl">💬</span>
+        <span className="text-xl sm:text-2xl">💬</span>
       </a>
     </div>
   );

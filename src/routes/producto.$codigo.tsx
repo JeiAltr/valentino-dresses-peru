@@ -81,23 +81,23 @@ function ProductPage() {
   const directWhatsAppUrl = `https://wa.me/51${config.whatsapp.replace(/\D/g, "")}?text=${singleWhatsAppMessage}`;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 py-6 sm:py-8 lg:px-8 w-full max-w-full overflow-hidden">
       {/* Breadcrumb */}
-      <nav className="mb-6 flex items-center gap-2 text-xs text-muted-foreground">
+      <nav className="mb-5 sm:mb-6 flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs text-muted-foreground">
         <Link to="/" className="hover:text-primary transition-colors">Inicio</Link>
         <span>/</span>
         <Link to="/catalogo" search={{ q: "" }} className="hover:text-primary transition-colors">Catálogo</Link>
         <span>/</span>
-        <span className="text-foreground font-medium">{product.name}</span>
+        <span className="text-foreground font-medium truncate max-w-[200px] sm:max-w-none">{product.name}</span>
       </nav>
 
       {/* Grid de Detalle */}
-      <div className="grid gap-12 lg:grid-cols-[1.15fr_.85fr]">
+      <div className="grid gap-8 sm:gap-10 lg:gap-12 lg:grid-cols-[1.15fr_.85fr]">
         
         {/* Galería de Imágenes */}
-        <div className="grid grid-cols-[76px_minmax(0,1fr)] gap-3 md:grid-cols-[96px_minmax(0,1fr)]">
+        <div className="grid grid-cols-[60px_minmax(0,1fr)] sm:grid-cols-[76px_minmax(0,1fr)] md:grid-cols-[96px_minmax(0,1fr)] gap-2.5 sm:gap-3">
           {/* Miniaturas de ángulos */}
-          <div className="grid content-start gap-3">
+          <div className="grid content-start gap-2 sm:gap-3">
             {[0, 1, 2, 3].map((idx) => (
               <div
                 key={idx}
@@ -117,21 +117,21 @@ function ProductPage() {
           {/* Imagen Principal */}
           <div className="relative rounded-lg overflow-hidden border border-border shadow-sm aspect-[3/4]">
             <ProductArt name={product.name} tone={(product.imageTone + activeImageIndex) % 6} className="h-full w-full" />
-            <div className="absolute top-4 left-4 flex flex-col gap-2">
-              {product.salePrice && <Badge className="bg-primary text-primary-foreground font-semibold">Oferta Especial</Badge>}
-              {product.isNew && <Badge variant="secondary" className="border-border">Nuevo Ingreso</Badge>}
+            <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex flex-col gap-1.5 sm:gap-2">
+              {product.salePrice && <Badge className="bg-primary text-primary-foreground font-semibold text-[10px] sm:text-xs">Oferta Especial</Badge>}
+              {product.isNew && <Badge variant="secondary" className="border-border text-[10px] sm:text-xs">Nuevo Ingreso</Badge>}
             </div>
-            <div className="absolute bottom-3 right-3 bg-background/90 backdrop-blur px-2.5 py-1 rounded text-[11px] text-muted-foreground font-mono">
+            <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 bg-background/90 backdrop-blur px-2 py-0.5 sm:px-2.5 sm:py-1 rounded text-[10px] sm:text-[11px] text-muted-foreground font-mono">
               Foto {activeImageIndex + 1} de 4
             </div>
           </div>
         </div>
 
         {/* Información y Compra */}
-        <div className="lg:sticky lg:top-36 lg:self-start space-y-6">
+        <div className="lg:sticky lg:top-36 lg:self-start space-y-5 sm:space-y-6">
           
           <div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between flex-wrap gap-2">
               <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
                 CÓDIGO: {product.code}
               </span>
@@ -140,18 +140,18 @@ function ProductPage() {
               </span>
             </div>
 
-            <h1 className="mt-2 font-display text-4xl lg:text-5xl font-semibold text-foreground leading-[1.05]">
+            <h1 className="mt-2 font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground leading-[1.1] break-words">
               {product.name}
             </h1>
 
             {/* Precios */}
-            <div className="mt-4 flex items-baseline gap-3">
+            <div className="mt-3 sm:mt-4 flex flex-wrap items-baseline gap-2 sm:gap-3">
               {product.salePrice ? (
                 <>
-                  <span className="text-3xl font-bold text-primary font-display">
+                  <span className="text-2xl sm:text-3xl font-bold text-primary font-display">
                     {formatPrice(product.salePrice)}
                   </span>
-                  <span className="text-lg text-muted-foreground line-through">
+                  <span className="text-base sm:text-lg text-muted-foreground line-through">
                     {formatPrice(product.price)}
                   </span>
                   <span className="text-xs font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary">
@@ -159,7 +159,7 @@ function ProductPage() {
                   </span>
                 </>
               ) : (
-                <span className="text-3xl font-bold text-foreground font-display">
+                <span className="text-2xl sm:text-3xl font-bold text-foreground font-display">
                   {formatPrice(product.price)}
                 </span>
               )}
@@ -237,7 +237,7 @@ function ProductPage() {
 
             {/* Controles y Botones de Compra */}
             <div className="space-y-3 pt-2">
-              <div className="grid grid-cols-[100px_minmax(0,1fr)] gap-3">
+              <div className="grid grid-cols-[84px_minmax(0,1fr)] sm:grid-cols-[100px_minmax(0,1fr)] gap-2 sm:gap-3">
                 {/* Cantidad */}
                 <div className="flex items-center justify-between rounded-md border border-border bg-background px-1 h-11">
                   <Button
@@ -265,7 +265,7 @@ function ProductPage() {
                 <Button
                   size="lg"
                   disabled={!stock}
-                  className="h-11 font-semibold"
+                  className="h-11 font-semibold text-xs sm:text-sm px-3 sm:px-6"
                   onClick={() => {
                     addToCart({
                       code: product.code,
@@ -287,18 +287,18 @@ function ProductPage() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="w-full h-11 whatsapp-btn text-white font-semibold flex items-center justify-center gap-2 border-none shadow-md"
+                className="w-full h-11 whatsapp-btn text-white font-semibold flex items-center justify-center gap-2 border-none shadow-md text-xs sm:text-sm"
               >
                 <a href={directWhatsAppUrl} target="_blank" rel="noreferrer">
-                  <MessageCircle className="h-4 w-4" />
-                  Consultar y Pedir por WhatsApp esta prenda
+                  <MessageCircle className="h-4 w-4 shrink-0" />
+                  <span className="truncate">Pedir por WhatsApp esta prenda</span>
                 </a>
               </Button>
             </div>
           </div>
 
           {/* Bloque de Garantías de Boutique */}
-          <div className="border-t border-border pt-5 grid grid-cols-2 gap-3 text-xs text-muted-foreground">
+          <div className="border-t border-border pt-5 grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 text-xs text-muted-foreground">
             <div className="flex items-center gap-2">
               <Check className="h-4 w-4 text-primary shrink-0" />
               <span>Pruébatelo antes de pagar en tienda</span>
@@ -321,20 +321,20 @@ function ProductPage() {
           <div className="border-t border-border pt-5 space-y-4 text-sm">
             <div>
               <h3 className="font-semibold text-foreground text-xs uppercase tracking-wider mb-2">Descripción</h3>
-              <p className="text-muted-foreground leading-relaxed">{product.description}</p>
+              <p className="text-muted-foreground leading-relaxed text-xs sm:text-sm">{product.description}</p>
             </div>
 
             <div>
               <h3 className="font-semibold text-foreground text-xs uppercase tracking-wider mb-1">Material y Tejido</h3>
-              <p className="text-muted-foreground">{product.material}</p>
+              <p className="text-muted-foreground text-xs sm:text-sm">{product.material}</p>
             </div>
 
             <div>
               <h3 className="font-semibold text-foreground text-xs uppercase tracking-wider mb-2">Detalles de la prenda</h3>
-              <ul className="space-y-1 text-muted-foreground">
+              <ul className="space-y-1 text-muted-foreground text-xs sm:text-sm">
                 {product.details.map((d) => (
                   <li key={d} className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
                     <span>{d}</span>
                   </li>
                 ))}
@@ -347,13 +347,13 @@ function ProductPage() {
 
       {/* Productos Relacionados */}
       {related.length > 0 && (
-        <section className="mt-24 border-t border-border pt-16">
-          <div className="section-heading mb-8">
+        <section className="mt-14 sm:mt-24 border-t border-border pt-10 sm:pt-16 w-full max-w-full overflow-hidden">
+          <div className="section-heading mb-6 sm:mb-8">
             <div>
               <p className="eyebrow">Selección Especial</p>
               <h2>Prendas que combinan con tu estilo</h2>
             </div>
-            <Button asChild variant="outline" size="sm">
+            <Button asChild variant="outline" size="sm" className="w-full sm:w-auto text-center justify-center">
               <Link to="/catalogo" search={{ q: "" }}>Ver más</Link>
             </Button>
           </div>
@@ -377,9 +377,9 @@ function SizeGuideModal({ category }: { category: string }) {
           <span>Guía de Medidas</span>
         </button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-lg">
+      <DialogContent className="w-[94vw] max-w-lg p-4 sm:p-6 max-h-[85vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="font-display text-3xl font-semibold">
+          <DialogTitle className="font-display text-2xl sm:text-3xl font-semibold">
             Guía de Tallas y Medidas
           </DialogTitle>
           <DialogDescription className="text-xs text-muted-foreground">
@@ -396,8 +396,8 @@ function SizeGuideModal({ category }: { category: string }) {
 
           {/* Tabla Vestidos y Tops */}
           <TabsContent value="vestidos" className="mt-4">
-            <div className="rounded-lg border border-border overflow-hidden">
-              <table className="w-full text-xs">
+            <div className="rounded-lg border border-border overflow-x-auto w-full">
+              <table className="w-full text-xs min-w-[280px]">
                 <thead>
                   <tr className="bg-secondary/60 text-foreground font-semibold border-b border-border">
                     <th className="py-2.5 px-3 text-left">Talla</th>
@@ -427,8 +427,8 @@ function SizeGuideModal({ category }: { category: string }) {
 
           {/* Tabla Pantalones */}
           <TabsContent value="pantalones" className="mt-4">
-            <div className="rounded-lg border border-border overflow-hidden">
-              <table className="w-full text-xs">
+            <div className="rounded-lg border border-border overflow-x-auto w-full">
+              <table className="w-full text-xs min-w-[280px]">
                 <thead>
                   <tr className="bg-secondary/60 text-foreground font-semibold border-b border-border">
                     <th className="py-2.5 px-3 text-left">Talla</th>
@@ -460,8 +460,8 @@ function SizeGuideModal({ category }: { category: string }) {
           <TabsContent value="ninas" className="mt-4 space-y-4">
             <div>
               <p className="text-xs font-semibold mb-2 text-foreground">Vestidos para Niñas:</p>
-              <div className="rounded-lg border border-border overflow-hidden">
-                <table className="w-full text-xs">
+              <div className="rounded-lg border border-border overflow-x-auto w-full">
+                <table className="w-full text-xs min-w-[280px]">
                   <thead>
                     <tr className="bg-secondary/60 text-foreground font-semibold border-b border-border">
                       <th className="py-2 px-3 text-left">Talla / Edad</th>
